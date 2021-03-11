@@ -9,7 +9,7 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.4.31"
+    id("org.jetbrains.kotlin.jvm") version "1.3.72"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij") version "0.7.2"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
@@ -27,9 +27,30 @@ version = properties("pluginVersion")
 repositories {
     mavenCentral()
     jcenter()
+    //京东金融私服-正式仓库
+//    maven{url = uri ("http://nexus.cbpmgt.com/nexus/content/groups/public") }
+
 }
+
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.15.0")
+//    compileOnly(files("libs/wizard-template.jar"))
+    compileOnly(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+//    compileOnly(files("libs/bmc_templet_base.aar"))
+//    compileOnly("com.jd.jrapp.bm.common:templet_base:1.0.1.620-SNAPSHOT")
+//    compileOnly("com.jd.jrapp.bm:common:1.1.5-20210305.145115-SNAPSHOT")
+//    compileOnly("com.jd.jrapp.bm:bm-proxy:1.0.2-6.0.20-SNAPSHOT")
+//    compileOnly("com.jd.jrapp.library:jrouter:1.0.3.4-jdd-SNAPSHOT")
+//    compileOnly("com.jd.jrapp.bm:bm-api:1.0.8-6.0.20-SNAPSHOT")
+//    compileOnly("com.jd.jrapp.library:jrouter:1.0.3.4-jdd-SNAPSHOT")
+
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven{ url = uri("http://nexus.cbpmgt.com/nexus/content/groups/public") }
+    }
 }
 
 // Configure gradle-intellij-plugin plugin.
